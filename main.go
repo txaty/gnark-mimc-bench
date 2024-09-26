@@ -20,13 +20,14 @@ func referenceCircuit(curve ecc.ID) (constraint.ConstraintSystem, frontend.Circu
 	if err != nil {
 		panic(err)
 	}
-	//snarkField, _ := twistededwards.GetSnarkField(tedwards.BN254)
+
 	assignedCircuit := GetMiMcAssign()
 
 	srs, err := test.NewKZGSRS(ccs)
 	if err != nil {
 		panic(err)
 	}
+
 	return ccs, assignedCircuit, srs
 }
 
@@ -50,7 +51,7 @@ func main() {
 			fmt.Println("Error = ", err)
 		}
 		duration := time.Now().UTC().Sub(startingTime)
-		fmt.Printf("PlonK MiMC Hash, Num:[%d], took [%.3f] Seconds, for 10 run!\n", numHashes, duration.Seconds())
+		fmt.Printf("PlonK MiMC Hash, Num:[%d], took [%.3f] Seconds.\n", numHashes, duration.Seconds())
 
 		publicWitness, err := fullWitness.Public()
 		if err != nil {
